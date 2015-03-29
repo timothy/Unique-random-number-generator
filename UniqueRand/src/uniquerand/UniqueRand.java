@@ -20,28 +20,31 @@ public class UniqueRand {
     public static void main(String[] args) {
         // TODO code application logic here
         ArrayList<Integer> rand = new <Integer>ArrayList();
-        rand = gen(10, 20);
+        rand = gen(10, 5);
         for (int i = 0; i < rand.size(); i++) {
             System.out.print(rand.get(i));
             System.out.print(" ");
         }
     }
 
-    public static ArrayList<Integer> gen(int min, int max) {
-        ArrayList<Integer> Arand = new <Integer>ArrayList();
-        ArrayList<Integer> Brand = new <Integer>ArrayList();
-        ArrayList<Integer> Crand = new <Integer>ArrayList();
+    public static ArrayList<Integer> gen(int size, int max) {
+        ArrayList<Integer> uniquRan = new <Integer>ArrayList();
+        int random = 0;
+        int temp = 0;
         Random rand = new Random();
 
-        for (int i = min; i < max; i++) {
-            Arand.add(i);
-            Brand.add(rand.nextInt((min)));
+        for (int i = 0; i < size; i++) {
+            uniquRan.add(i);
         }
 
-        for (int i = 0; i < (max - min); i++) {
-            Crand.add(Arand.get(Brand.get(i)));
+        for (int i = 0; i < size; i++) {
+            random = rand.nextInt(size);
+            
+            temp = uniquRan.get(i);
+            uniquRan.set(i, uniquRan.get(random));
+            uniquRan.set(random, temp);
         }
 
-        return Crand;
+        return uniquRan;
     }
 }
